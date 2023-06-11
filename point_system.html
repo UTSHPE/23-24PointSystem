@@ -1,0 +1,58 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Meeting Check-In</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Meeting Check-In</h1>
+  <label for="name">Name:</label>
+  <input type="text" id="name">
+
+  <button id="checkInButton">Check In</button>
+  <div id="status"></div>
+
+
+  <script src="script.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Meeting Check-In</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Meeting Check-In</h1>
+  <label for="name">Name:</label>
+  <input type="text" id="name">
+
+  <button id="checkInButton">Check In</button>
+  <div id="status"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const checkInButton = document.getElementById("checkInButton");
+      const nameInput = document.getElementById("name");
+      const statusDiv = document.getElementById("status");
+
+      checkInButton.addEventListener("click", async () => {
+        const name = nameInput.value;
+
+        // Make a fetch request to the server endpoint
+        try {
+          const response = await fetch(`/checkin?name=${name}`);
+          const data = await response.json();
+          statusDiv.textContent = "Check-in successful!";
+        } catch (error) {
+          statusDiv.textContent = "An error occurred during check-in.";
+          console.error(error);
+        }
+      });
+    });
+  </script>
+
+  <script src="server.js"></script>
+</body>
+</html>
